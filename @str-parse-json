@@ -34,23 +34,23 @@
 #
 # Will result in:
 #
-# local -A __Strings
-# __Strings[1/1]='zplugin-ices'
-# __Strings[2/1]='default bgn'
-# __Strings[3/1]='wait 1 lucid \  as program pick fzy make \ '
-# __Strings[3/2]='wait 1 lucid \  as null make \  sbin fzy\;contrib/fzy-\*'
+# local -A Strings
+# Strings[1/1]='zplugin-ices'
+# Strings[2/1]='default bgn'
+# Strings[3/1]='wait 1 lucid \  as program pick fzy make \ '
+# Strings[3/2]='wait 1 lucid \  as null make \  sbin fzy\;contrib/fzy-\*'
 #
 # So that when you e.g.: expect a key `bgn' but don't know at which
 # position, you can do:
 #
-# local -A __Strings
-# @str-parse-json "$json" "zplugin-ices" __Strings
+# local -A Strings
+# @str-parse-json "$json" "zplugin-ices" Strings
 #
 # integer pos
-# pos=${${(@Q)${(@z)__Strings[2/1]}}[(I)bgn]}
+# pos=${${(@Q)${(@z)Strings[2/1]}}[(I)bgn]}
 # if (( pos )) {
 #   local -A ices
-#   ices=( "${(@Q)${(@z)__Strings[3/$pos]}}" )
+#   ices=( "${(@Q)${(@z)Strings[3/$pos]}}" )
 #   # Use the `ices' hash holding the values of the `bgn' object
 #   …
 # }
