@@ -1,3 +1,5 @@
+# @str-parse-json
+#
 # Parses the buffer ($1) with JSON and returns:
 #
 # 1. Fields for the given key ($2) in the given hash ($3)
@@ -52,6 +54,7 @@
 #   # Use the `ices' hash holding the values of the `bgn' object
 #   …
 # }
+
 @str-parse-json() {
     emulate -LR zsh
     setopt extendedglob warncreateglobal typesetsilent
@@ -137,6 +140,5 @@
         : ${(PAA)__varname::="${(kv)__Strings[@]}"}
     }
 }
-# }}}
 
 # vim:ft=zsh:sts=4:sw=4:et
