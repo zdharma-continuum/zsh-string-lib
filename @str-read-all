@@ -8,6 +8,8 @@
 # $2 - name of output variable (default: REPLY)
 
 @str-read-all() {
+    emulate -LR zsh -o extendedglob -o warncreateglobal -o typesetsilent
+
     local __in_fd=${1:-0} __out_var=${2:-REPLY}
     local -a __tmp
     integer __ret=1 __repeat=10 __tmp_size=0
