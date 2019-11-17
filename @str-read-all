@@ -6,17 +6,24 @@
 #
 # $1 - file descriptor (a number) to be read from
 # $2 - name of output variable (default: REPLY)
+# $3 - numer of retries (default: 10)
+# $4 - sleep time after each retry (a float; default: 0)
 
 @str-read-all() {
     emulate -LR zsh -o extendedglob -o warncreateglobal -o typesetsilent
 
     local __in_fd=${1:-0} __out_var=${2:-REPLY}
     local -a __tmp
-    integer __ret=1 __repeat=10 __tmp_size=0
+    integer __ret=1 __repeat=${3:-10} __tmp_size=0
+    float __sleept=${4:-0}
 
     while sysread -s 65535 -i "$__in_fd" '__tmp[ __tmp_size + 1 ]'; do
         (( ( __ret = $? ) == 0 )) && (( ++ __tmp_size ))
-        (( __ret == 5 )) && { __ret=0; (( -- __repeat == 0 )) && break; }
+        (( __ret == 5 )) && { 
+            __ret=0
+            (( -- __repeat == 0 )) && break
+            (( __sleept )) && LANG=C sleep "$__sleept"
+        }
     done
 
     : ${(P)__out_var::="${(j::)__tmp}"}
