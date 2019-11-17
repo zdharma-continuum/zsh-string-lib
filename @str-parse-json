@@ -54,6 +54,11 @@
 #   # Use the `ices' hash holding the values of the `bgn' object
 #   …
 # }
+#
+# $1 - the buffer with JSON
+# $2 - the key in the JSON that should be mapped to the
+#      result (i.e.: you can map subset of the input)
+# $3 - the name of the output hash parameter
 
 @str-parse-json() {
     emulate -LR zsh -o extendedglob -o warncreateglobal -o typesetsilent
