@@ -10,6 +10,6 @@ fi
 
 zmodload zsh/system 2>/dev/null
 
-autoload \
+autoload -Uz \
     @str-parse-json \
     @str-read-all
