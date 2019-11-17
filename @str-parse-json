@@ -56,8 +56,7 @@
 # }
 
 @str-parse-json() {
-    emulate -LR zsh
-    setopt extendedglob warncreateglobal typesetsilent
+    emulate -LR zsh -o extendedglob -o warncreateglobal -o typesetsilent
 
     local -A __pos_to_level __level_to_pos __pair_map \
         __final_pairs __Strings __Counts
