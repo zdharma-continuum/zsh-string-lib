@@ -2,7 +2,11 @@
 #
 # Consumes whole data from given file descriptor and
 # stores the string under the given ($2) parameter,
-# which is REPLY by default
+# which is REPLY by default.
+#
+# It can try hard to read the whole data by retrying
+# multiple times (10 by default) and sleeping before
+# each retry (doesn't do this by default).
 #
 # $1 - file descriptor (a number) to be read from
 # $2 - name of output variable (default: REPLY)
