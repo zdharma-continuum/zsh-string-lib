@@ -1,0 +1,25 @@
+# @str-read-all
+#
+# Consumes whole data from given file descriptor and
+# stores the string under the given ($2) parameter,
+# which is REPLY by default
+#
+# $1 - file descriptor (a number) to be read from
+# $2 - name of output variable (default: REPLY)
+
+@str-read-all() {
+    local __in_fd=${1:-0} __out_var=${2:-REPLY}
+    local -a __tmp
+    integer __ret=1 __repeat=10 __tmp_size=0
+
+    while sysread -s 65535 -i "$__in_fd" '__tmp[ __tmp_size + 1 ]'; do
+        (( ( __ret = $? ) == 0 )) && (( ++ __tmp_size ))
+        (( __ret == 5 )) && { __ret=0; (( -- __repeat == 0 )) && break; }
+    done
+
+    : ${(P)__out_var::="${(j::)__tmp}"}
+
+    return __ret
+}
+
+# vim:ft=zsh:sts=4:sw=4:et
