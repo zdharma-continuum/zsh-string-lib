@@ -17,14 +17,15 @@
     integer __ret=1 __repeat=${3:-10} __tmp_size=0
     float __sleept=${4:-0}
 
-    while sysread -s 65535 -i "$__in_fd" '__tmp[ __tmp_size + 1 ]'; do
+    while (( 1 )) {
+        sysread -s 65535 -i "$__in_fd" '__tmp[ __tmp_size + 1 ]'
         (( ( __ret = $? ) == 0 )) && (( ++ __tmp_size ))
         (( __ret == 5 )) && { 
             __ret=0
             (( -- __repeat == 0 )) && break
             (( __sleept )) && LANG=C sleep "$__sleept"
         }
-    done
+    }
 
     : ${(P)__out_var::="${(j::)__tmp}"}
 
