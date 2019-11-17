@@ -12,6 +12,9 @@
 # $2 - name of output variable (default: REPLY)
 # $3 - numer of retries (default: 10)
 # $4 - sleep time after each retry (a float; default: 0)
+#
+# Inspired by:
+# https://github.com/okdana/shu2/blob/master/fn/shu:io:read
 
 @str-read-all() {
     emulate -LR zsh -o extendedglob -o warncreateglobal -o typesetsilent
