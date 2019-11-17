@@ -11,66 +11,66 @@ Parses the buffer (`$1`) with JSON and returns:
 1. Fields for the given key (`$2`) in the given hash (`$3`).
 2. The hash looks like follows:
 
-  ```
-  1/1 → strings at the level 1 of the 1st object
-  1/2 → strings at the level 1 of the 2nd object
-  …
-  2/1 → strings at 2nd level of the 1st object
-  …
-  ```
-
-  The strings are parseable with `"${(@Q)${(@z)value}"`, i.e.:
-  they're concatenated and quoted strings found in the JSON.
-
-  Example:
-
-  ```json
-  {
-      "zplugin-ices":{
-          "default":{
-              "wait":"1",
-              "lucid":"",
-              "as":"program",
-              "pick":"fzy",
-              "make":"",
-          },
-          "bgn":{
-              "wait":"1",
-              "lucid":"",
-              "as":"null",
-              "make":"",
-              "sbin":"fzy;contrib/fzy-*"
-          }
-      }
-  }
-  ```
-
-  Will result in:
-
-  ```zsh
-  local -A Strings
-  Strings[1/1]='zplugin-ices'
-  Strings[2/1]='default bgn'
-  Strings[3/1]='wait 1 lucid \  as program pick fzy make \ '
-  Strings[3/2]='wait 1 lucid \  as null make \  sbin fzy\;contrib/fzy-\*'
-  ```
-
-  So that when you e.g.: expect a key `bgn` but don't know at which
-  position, you can do:
-
-  ```zsh
-  local -A Strings
-  @str-parse-json "$json" "zplugin-ices" Strings
-
-  integer pos
-  pos=${${(@Q)${(@z)Strings[2/1]}}[(I)bgn]}
-  if (( pos )) {
-    local -A ices
-    ices=( "${(@Q)${(@z)Strings[3/$pos]}}" )
-    # Use the `ices' hash holding the values of the `bgn' object
+    ```
+    1/1 → strings at the level 1 of the 1st object
+    1/2 → strings at the level 1 of the 2nd object
     …
-  }
-  ```
+    2/1 → strings at 2nd level of the 1st object
+    …
+    ```
+
+    The strings are parseable with `"${(@Q)${(@z)value}"`, i.e.:
+    they're concatenated and quoted strings found in the JSON.
+
+Example:
+
+```json
+{
+    "zplugin-ices":{
+        "default":{
+            "wait":"1",
+            "lucid":"",
+            "as":"program",
+            "pick":"fzy",
+            "make":"",
+        },
+        "bgn":{
+            "wait":"1",
+            "lucid":"",
+            "as":"null",
+            "make":"",
+            "sbin":"fzy;contrib/fzy-*"
+        }
+    }
+}
+```
+
+Will result in:
+
+```zsh
+local -A Strings
+Strings[1/1]='zplugin-ices'
+Strings[2/1]='default bgn'
+Strings[3/1]='wait 1 lucid \  as program pick fzy make \ '
+Strings[3/2]='wait 1 lucid \  as null make \  sbin fzy\;contrib/fzy-\*'
+```
+
+So that when you e.g.: expect a key `bgn` but don't know at which
+position, you can do:
+
+```zsh
+local -A Strings
+@str-parse-json "$json" "zplugin-ices" Strings
+
+integer pos
+pos=${${(@Q)${(@z)Strings[2/1]}}[(I)bgn]}
+if (( pos )) {
+  local -A ices
+  ices=( "${(@Q)${(@z)Strings[3/$pos]}}" )
+  # Use the `ices' hash holding the values of the `bgn' object
+  …
+}
+```
 
 Arguments:
 
