@@ -12,4 +12,6 @@ zmodload zsh/system 2>/dev/null
 
 autoload -Uz \
     @str-parse-json \
-    @str-read-all
+    @str-read-all \
+    @str-ng-match
+
