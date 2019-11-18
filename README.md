@@ -103,4 +103,21 @@ print -r -- $REPLY
 …
 ```
 
+### @str-ng-match
+
+Returns a non-greedy match of the given pattern (`$2`) in the given string
+(`$1`).
+
+1. The string to match in.
+2. The pattern to match in the string.
+
+Example:
+
+```zsh
+if @str-ng-match "abb" "a*b"; then
+  print $REPLY
+fi
+Output: ab
+```
+
 <!-- vim:set ft=markdown tw=80 fo+=an1 autoindent: -->
