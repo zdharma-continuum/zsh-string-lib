@@ -35,4 +35,11 @@
     assert "$reply[30001]" same_as ""
 }
 
+@test 'ng-match' {
+    evl @str-ng-match "abb" "a*b"
+
+    assert "$state" same_as "0"
+    assert "$REPLY" same_as "ab"
+}
+
 # vim:ft=zsh:sw=4:sts=4:et
