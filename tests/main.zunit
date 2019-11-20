@@ -9,8 +9,10 @@
     evl @str-parse-json "'a':{'b':'1'}" a Strings
 
     assert "$state" same_as "0"
+    assert "$output" same_as ""
     assert "$Strings[1/1]" same_as " b 1"
 }
+
 @test 'read-all' {
 
     integer FD=13371337 i
@@ -25,6 +27,7 @@
     evl @str-read-all $FD \; reply=\( "\${(@f)REPLY}" \)
 
     assert "$state" same_as "0"
+    assert "$output" same_as ""
     assert "$reply[1]" same_as "1"
     assert "$reply[10]" same_as "10"
     assert "$reply[100]" same_as "100"
@@ -39,6 +42,7 @@
     evl @str-ng-match "abb" "a*b"
 
     assert "$state" same_as "0"
+    assert "$output" same_as ""
     assert "$REPLY" same_as "ab"
 }
 
