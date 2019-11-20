@@ -46,4 +46,15 @@
     assert "$REPLY" same_as "ab"
 }
 
+@test 'ng-matches' {
+    arr=( a1xx ayy a2xx )
+    evl @str-ng-matches ${arr[@]} "a*x"
+
+    assert "$state" same_as "0"
+    assert "$output" same_as ""
+    assert "$reply[1]" same_as "a1x"
+    assert "$reply[2]" same_as "a2x"
+    assert "$reply[3]" same_as ""
+}
+
 # vim:ft=zsh:sw=4:sts=4:et
