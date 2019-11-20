@@ -6,6 +6,7 @@
 #
 # Return value: $reply – contains all the matches
 #               $REPLY - holds the first match
+#               $?: 0 if there was any match found, otherwise 1
 #
 # Example:
 # arr=( a1xx ayy a2xx )
@@ -13,7 +14,7 @@
 #    print -rl $reply
 # fi
 #
-# Outout:
+# Output:
 # a1x
 # a2x
 
