@@ -5,9 +5,10 @@
 
 @test 'JSON parser' {
 
-  local -A Strings
-  evl @str-parse-json "'a':{'b':'1'}" a Strings
+    local -A Strings
+    evl @str-parse-json "'a':{'b':'1'}" a Strings
 
-  assert "$state" same_as "0"
-  assert "$Strings[1/1]" same_as " b 1"
+    assert "$state" same_as "0"
+    assert "$Strings[1/1]" same_as " b 1"
 }
+# vim:ft=zsh:sw=4:sts=4:et
