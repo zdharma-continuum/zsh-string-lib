@@ -1,3 +1,16 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [zsh-string-lib](#zsh-string-lib)
+  - [List Of The Functions](#list-of-the-functions)
+    - [@str-parse-json](#str-parse-json)
+    - [@str-read-all](#str-read-all)
+    - [@str-ng-match](#str-ng-match)
+    - [@str-ng-matches](#str-ng-matches)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # zsh-string-lib
 
 A string library for Zsh. Its founding function was parsing of JSON.
@@ -149,7 +162,5 @@ Outout:
 a1x
 a2x
 ```
-
-# vim:ft=zsh:sw=4:sts=4:et
 
 <!-- vim:set ft=markdown tw=80 fo+=an1 autoindent: -->
