@@ -11,4 +11,28 @@
     assert "$state" same_as "0"
     assert "$Strings[1/1]" same_as " b 1"
 }
+@test 'read-all' {
+
+    integer FD=13371337 i
+    local REPLY
+    local -a reply
+    command rm -f test_input.txt
+    for i ( {1..30000} ) {
+        print $i >>! test_input.txt
+    }
+    exec {FD}< <(command cat test_input.txt)
+
+    evl @str-read-all $FD \; reply=\( "\${(@f)REPLY}" \)
+
+    assert "$state" same_as "0"
+    assert "$reply[1]" same_as "1"
+    assert "$reply[10]" same_as "10"
+    assert "$reply[100]" same_as "100"
+    assert "$reply[1000]" same_as "1000"
+    assert "$reply[10000]" same_as "10000"
+    assert "$reply[20000]" same_as "20000"
+    assert "$reply[30000]" same_as "30000"
+    assert "$reply[30001]" same_as ""
+}
+
 # vim:ft=zsh:sw=4:sts=4:et
