@@ -120,4 +120,36 @@ fi
 Output: ab
 ```
 
+### @str-ng-matches
+
+
+Returns all non-greedy matches of the given pattern ($2) in the given string
+($1).
+
+Input:
+
+- `$1` … `$n-1` - the strings to match in
+- `$n`         - the pattern to match in the strings
+
+Return value:
+
+- `$reply` – contains all the matches
+- `$REPLY` - holds the first match
+- return code: 0 if there was any match found, otherwise 1
+
+Example:
+
+```zsh
+arr=( a1xx ayy a2xx )
+if @str-ng-matches ${arr[@]} "a*x"; then
+   print -rl $reply
+fi
+
+Outout:
+a1x
+a2x
+```
+
+# vim:ft=zsh:sw=4:sts=4:et
+
 <!-- vim:set ft=markdown tw=80 fo+=an1 autoindent: -->
