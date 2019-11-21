@@ -56,9 +56,7 @@
     assert "$reply[2]" same_as "a2x"
     assert "$reply[3]" same_as ""
 }
-
 @test 'read-ini' {
-
     integer i j k
     command rm -f test_input.txt
     for i j k ( {1..15} ) {
@@ -75,6 +73,24 @@
     assert "$INI[<10>_11]" same_as "12"
     assert "$INI[<13>_14]" same_as "15"
     assert "${#INI}" same_as "5"
+}
+
+@test 'read-toml' {
+    integer i j k l m
+    command rm -f test_input.txt
+    for i j k l m ( {1..15} ) {
+        print "[$i]\n$j=[ $k, \"$l\", '$m' ]" >>! test_input.txt
+    }
+    print "[$i]\n$j=$k, \"$l\", '$m'" >>! test_input.txt
+
+    evl @str-read-toml test_input.txt
+
+    assert "$state" same_as "0"
+    assert "$output" same_as ""
+    assert "$TOML[<1>_2]" same_as "3 4 5"
+    assert "$TOML[<6>_7]" same_as "8 9 10"
+    assert "$TOML[<11>_12]" same_as "13, \"14\", '15'"
+    assert "${#TOML}" same_as "3"
 }
 
 # vim:ft=zsh:sw=4:sts=4:et
