@@ -134,7 +134,7 @@ Example:
 
 ```zsh
 if @str-ng-match "abb" "a*b"; then
-  print $REPLY
+  print -r -- $REPLY
 fi
 Output: ab
 ```
@@ -160,7 +160,7 @@ Example:
 ```zsh
 arr=( a1xx ayy a2xx )
 if @str-ng-matches ${arr[@]} "a*x"; then
-   print -rl $reply
+   print -rl -- $reply
 fi
 
 Outout:
@@ -214,5 +214,9 @@ To retrieve the array stored in such way, use the substitution
 local -a array
 array=( "${(@Q)${(@z)TOML[<sec>_array]}}" )
 ```
+
+(The substitution first splits the input string as if Zsh would split it on the
+command line – with the `(z)` flag, and then removes one level of quoting with
+the `(Q)` flag).
 
 <!-- vim:set ft=markdown tw=80 fo+=an1 autoindent: -->
