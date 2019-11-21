@@ -193,7 +193,7 @@ Values are the values from the TOML file.
 The values can be quoted and concatenated strings if they're an array. For
 example:
 
-```toml
+```ini
 [sec]
 array = [ val1, "value 2", value&3 ]
 ```
