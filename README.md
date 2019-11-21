@@ -126,6 +126,10 @@ Returns a non-greedy match of the given pattern (`$2`) in the given string
 1. The string to match in.
 2. The pattern to match in the string.
 
+Return value:
+- `$REPLY` – the matched string, if found,
+- return code: `0` if there was a match found, otherwise `1`.
+
 Example:
 
 ```zsh
@@ -138,19 +142,19 @@ Output: ab
 ### @str-ng-matches
 
 
-Returns all non-greedy matches of the given pattern ($2) in the given string
-($1).
+Returns all non-greedy matches of the given pattern (`$2`) in the given string
+(`$1`).
 
 Input:
 
-- `$1` … `$n-1` - the strings to match in
-- `$n`         - the pattern to match in the strings
+- `$1` … `$n-1` - the strings to match in,
+- `$n`         - the pattern to match in the strings.
 
 Return value:
 
-- `$reply` – contains all the matches
-- `$REPLY` - holds the first match
-- return code: 0 if there was any match found, otherwise 1
+- `$reply` – contains all the matches,
+- `$REPLY` - holds the first match,
+- return code: `0` if there was any match found, otherwise `1`.
 
 Example:
 
