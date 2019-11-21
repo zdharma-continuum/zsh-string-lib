@@ -15,6 +15,7 @@
     local -a match mbegin mend
 
     [[ ! -r "$__ini_file" ]] && { builtin print -r "@str-read-ini: an ini file is unreadable ($__ini_file)"; return 1; }
+    (( ${(P)+__out_hash} )) || typeset -gA "$__out_hash"
 
     while read -r -t 1 __line; do
         if [[ "$__line" = [[:blank:]]#\;* ]]; then
