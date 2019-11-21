@@ -10,6 +10,9 @@
 # multiple times (10 by default) and sleeping before
 # each retry (doesn't do this by default).
 #
+# Other advantage over read -d '' is performance: the
+# sysread based implementation is much faster.
+#
 # $1 - file descriptor (a number) to be read from
 # $2 - name of output variable (default: REPLY)
 # $3 - numer of retries (default: 10)
