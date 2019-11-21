@@ -8,6 +8,7 @@
     - [@str-read-all](#str-read-all)
     - [@str-ng-match](#str-ng-match)
     - [@str-ng-matches](#str-ng-matches)
+    - [@str-read-ini](#str-read-ini)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
