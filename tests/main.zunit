@@ -84,13 +84,17 @@
     print "[$i]\n$j=$k, \"$l\", '$m'" >>! test_input.txt
 
     evl @str-read-toml test_input.txt
+    evl @str-read-toml test_input.txt TOML my_
 
     assert "$state" same_as "0"
     assert "$output" same_as ""
+    assert "$TOML[my_<1>_2]" same_as "3 4 5"
+    assert "$TOML[my_<6>_7]" same_as "8 9 10"
+    assert "$TOML[my_<11>_12]" same_as "13, \"14\", '15'"
     assert "$TOML[<1>_2]" same_as "3 4 5"
     assert "$TOML[<6>_7]" same_as "8 9 10"
     assert "$TOML[<11>_12]" same_as "13, \"14\", '15'"
-    assert "${#TOML}" same_as "3"
+    assert "${#TOML}" same_as "6"
 }
 
 # vim:ft=zsh:sw=4:sts=4:et
