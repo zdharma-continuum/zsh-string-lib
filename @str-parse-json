@@ -71,6 +71,8 @@
         __start __end __sidx=1
     local -a match mbegin mend __pair_order
 
+    (( ${(P)+__varname} )) || typeset -gA "$__varname"
+
     __pair_map=( "(" ")" "{" "}" "[" "]" )
     while [[ $__workbuf = (#b)[^"{}()[]\\\"'"]#((["({[]})\"'"])|[\\](*))(*) ]]; do
         [[ -n ${match[3]} ]] && {
