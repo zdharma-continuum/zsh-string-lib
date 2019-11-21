@@ -14,5 +14,6 @@ autoload -Uz \
     @str-parse-json \
     @str-read-all \
     @str-ng-match \
-    @str-ng-matches
+    @str-ng-matches \
+    @str-read-ini
 
