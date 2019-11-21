@@ -163,4 +163,17 @@ a1x
 a2x
 ```
 
+### @str-read-ini
+
+Reads an INI file.
+
+Arguments:
+
+1. Path to the ini file to parse.
+2. Name of output hash (`INI` by default).
+3. Prefix for keys in the hash (can be empty).
+
+Writes to given hash under keys built in following way: `${3}<section>_field`.
+Values are values from ini file.
+
 <!-- vim:set ft=markdown tw=80 fo+=an1 autoindent: -->
