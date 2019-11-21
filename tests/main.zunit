@@ -64,6 +64,7 @@
     }
 
     evl @str-read-ini test_input.txt
+    evl @str-read-ini test_input.txt INI my_
 
     assert "$state" same_as "0"
     assert "$output" same_as ""
@@ -72,7 +73,12 @@
     assert "$INI[<7>_8]" same_as "9"
     assert "$INI[<10>_11]" same_as "12"
     assert "$INI[<13>_14]" same_as "15"
-    assert "${#INI}" same_as "5"
+    assert "$INI[my_<1>_2]" same_as "3"
+    assert "$INI[my_<4>_5]" same_as "6"
+    assert "$INI[my_<7>_8]" same_as "9"
+    assert "$INI[my_<10>_11]" same_as "12"
+    assert "$INI[my_<13>_14]" same_as "15"
+    assert "${#INI}" same_as "10"
 }
 
 @test 'read-toml' {
