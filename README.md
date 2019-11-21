@@ -141,9 +141,8 @@ Output: ab
 
 ### @str-ng-matches
 
-
-Returns all non-greedy matches of the given pattern (`$2`) in the given string
-(`$1`).
+Returns all non-greedy matches of the given pattern in the given list of
+strings.
 
 Input:
 
