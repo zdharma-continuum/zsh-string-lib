@@ -57,4 +57,24 @@
     assert "$reply[3]" same_as ""
 }
 
+@test 'read-ini' {
+
+    integer i j k
+    command rm -f test_input.txt
+    for i j k ( {1..15} ) {
+        print "[$i]\n$j=$k" >>! test_input.txt
+    }
+
+    evl @str-read-ini test_input.txt
+
+    assert "$state" same_as "0"
+    assert "$output" same_as ""
+    assert "$INI[<1>_2]" same_as "3"
+    assert "$INI[<4>_5]" same_as "6"
+    assert "$INI[<7>_8]" same_as "9"
+    assert "$INI[<10>_11]" same_as "12"
+    assert "$INI[<13>_14]" same_as "15"
+    assert "${#INI}" same_as "5"
+}
+
 # vim:ft=zsh:sw=4:sts=4:et
