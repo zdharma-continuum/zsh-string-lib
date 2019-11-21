@@ -177,4 +177,38 @@ Arguments:
 Writes to given hash under keys built in following way: `${3}<section>_field`.
 Values are the values from the ini file.
 
+### @str-read-toml
+
+
+Reads a TOML file with support for single-level array.
+
+1. Path to the TOML file to parse.
+2. Name of output hash (`TOML` by default).
+3. Prefix for keys in the hash (can be empty).
+
+Writes to given hash under keys built in following way: `${3}<section>_field`.
+Values are the values from the TOML file.
+
+The values can be quoted and concatenated strings if they're an array. For
+example:
+
+```toml
+[sec]
+array = [ val1, "value 2", value&3 ]
+```
+
+Then the fields of the hash will be:
+
+```zsh
+TOML[<sec>_array]="val1 value\ 2 value\&3"
+```
+
+To retrieve the array stored in such way, use the substitution
+`"${(@Q)${(@z)TOML[<sec>_array]}}"`:
+
+```zsh
+local -a array
+array=( "${(@Q)${(@z)TOML[<sec>_array]}}" )
+```
+
 <!-- vim:set ft=markdown tw=80 fo+=an1 autoindent: -->
