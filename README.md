@@ -175,6 +175,6 @@ Arguments:
 3. Prefix for keys in the hash (can be empty).
 
 Writes to given hash under keys built in following way: `${3}<section>_field`.
-Values are values from ini file.
+Values are the values from the ini file.
 
 <!-- vim:set ft=markdown tw=80 fo+=an1 autoindent: -->
