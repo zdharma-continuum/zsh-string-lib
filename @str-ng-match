@@ -1,3 +1,5 @@
+# Copyright (c) 2018 Sebastian Gniazdowski
+#
 # Returns a non-greedy match of the given pattern ($2)
 # in the given string ($1).
 #
