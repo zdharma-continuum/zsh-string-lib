@@ -102,6 +102,9 @@ Arguments:
 Consumes whole data from given file descriptor and stores the string under the
 given (`$2`) parameter, which is `REPLY` by default.
 
+The reason to create this function is speed – it's much faster than `read -d
+''`.
+
 It can try hard to read the whole data by retrying multiple times (`10` by
 default) and sleeping before each retry (not done by default).
 
