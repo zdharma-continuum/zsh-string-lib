@@ -15,5 +15,6 @@ autoload -Uz \
     @str-read-all \
     @str-ng-match \
     @str-ng-matches \
-    @str-read-ini
+    @str-read-ini \
+    @str-read-toml
 
