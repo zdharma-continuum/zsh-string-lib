@@ -78,6 +78,9 @@ local -A Strings
 @str-parse-json "$json" "zplugin-ices" Strings
 
 integer pos
+# (I) flag returns index at which the `bgn' string
+# has been found in the array – the result of the
+# (z)-split of the Strings[2/1] string
 pos=${${(@Q)${(@z)Strings[2/1]}}[(I)bgn]}
 if (( pos )) {
   local -A ices
