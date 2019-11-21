@@ -68,13 +68,13 @@
     local __input=$1 __workbuf=$1 __key=$2 __varname=$3 \
         __style __quoting
     integer __nest=${4:-1} __idx=0 __pair_idx __level=0 \
-        __start __end __sidx=1
+        __start __end __sidx=1 __had_quoted_value=0
     local -a match mbegin mend __pair_order
 
     (( ${(P)+__varname} )) || typeset -gA "$__varname"
 
     __pair_map=( "(" ")" "{" "}" "[" "]" )
-    while [[ $__workbuf = (#b)[^"{}()[]\\\"'"]#((["({[]})\"'"])|[\\](*))(*) ]]; do
+    while [[ $__workbuf = (#b)[^"{}()[]\\\"'",]#((["({[]})\"'",])|[\\](*))(*) ]]; do
         [[ -n ${match[3]} ]] && {
             __idx+=${mbegin[1]}
 
@@ -89,7 +89,10 @@
                     __pos_to_level[$__idx]=$(( ++ __level ))
                     __level_to_pos[$__level]=$__idx
                     (( __Counts[$__level] += 1 ))
+                    __sidx=__idx+1
                 elif [[ ${match[1]} = ["]})"] ]]; then
+                    (( !__had_quoted_value )) && \
+                        __Strings[$__level/${__Counts[$__level]}]+=" ${(q)__input[__sidx,__idx-1]//((#s)[[:blank:]]##|([[:blank:]]##(#e)))}"
                     if (( __level > 0 )); then
                         __pair_idx=${__level_to_pos[$__level]}
                         __pos_to_level[$__idx]=$(( __level -- ))
@@ -109,15 +112,25 @@
                     __Strings[$__level/${__Counts[$__level]}]+=" ${(q)__input[__sidx,__idx-1]}"
                     __quoting=""
                 else
+                    __had_quoted_value=1
                     __sidx=__idx+1
                     __quoting='"'
                 fi
+
+            [[ ${match[1]} = , && -z $__quoting ]] && \
+                {
+                    (( !__had_quoted_value )) && \
+                        __Strings[$__level/${__Counts[$__level]}]+=" ${(q)__input[__sidx,__idx-1]//((#s)[[:blank:]]##|([[:blank:]]##(#e)))}"
+                    __sidx=__idx+1
+                    __had_quoted_value=0
+                }
 
             [[ ${match[1]} = \' && $__quoting != \" ]] && \
                 if [[ $__quoting = "'" ]]; then
                     __Strings[$__level/${__Counts[$__level]}]+=" ${(q)__input[__sidx,__idx-1]}"
                     __quoting=""
                 else
+                    __had_quoted_value=1
                     __sidx=__idx+1
                     __quoting="'"
                 fi
