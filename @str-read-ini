@@ -7,7 +7,7 @@
 # $3 - prefix for keys in the hash (can be empty)
 #
 # Writes to given hash under keys built in following way: ${3}<section>_field.
-# Values are values from ini file.
+# Values are the values from the ini file.
 
 @str-read-ini() {
     local __ini_file="$1" __out_hash="${2:-INI}" __key_prefix="$3"
