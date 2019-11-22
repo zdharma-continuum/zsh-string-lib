@@ -157,7 +157,7 @@
         @str-parse-json "$__found" "$__key" "$__varname" 2
     }
 
-    if (( __nest == 1 )) {
+    if (( __nest == 2 )) {
         : ${(PAA)__varname::="${(kv)__Strings[@]}"}
     }
 }
