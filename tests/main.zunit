@@ -6,11 +6,11 @@
 @test 'JSON parser' {
 
     local -A Strings
-    evl @str-parse-json "'a':{'b':'1'}" a Strings
+    evl @str-parse-json "{'a':{'b':'1'}}" a Strings
 
     assert "$state" same_as "0"
     assert "$output" same_as ""
-    assert "$Strings[1/1]" same_as " b 1"
+    assert "$Strings[2/1]" same_as " b 1"
 }
 
 @test 'read-all' {

@@ -39,9 +39,9 @@
 
     .str-toml-parse-array() {
         local -A Strings
-        @str-parse-json "\"input\":$1" input Strings
-        if [[ -n "${Strings[1/1]}" ]]; then
-            REPLY="${Strings[1/1]# }"
+        @str-parse-json "{\"input\":$1}" input Strings
+        if [[ -n "${Strings[2/1]}" ]]; then
+            REPLY="${Strings[2/1]# }"
             return 0
         else
             REPLY=""
