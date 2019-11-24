@@ -1,0 +1,38 @@
+# -*- mode: sh; sh-indentation: 4; indent-tabs-mode: nil; sh-basic-offset: 4; -*-
+# Copyright (c) 2018 Sebastian Gniazdowski
+#
+# @str-dump
+#
+# $1 - name of the variable of which contents should be dumped
+#
+# Dumps the contents of the variable, whether it's being a scalar,
+# an array or a hash. The contents of the hash are sorted on the
+# keys numerically, i.e.: by using `(on)` flag.
+
+@str-dump() {
+    local __var_name="$1"
+
+    case ${(Pt)__var_name} in
+        (*array*)
+            print -rl -- "${(@P)__var_name}"
+            ;;
+        (*association*)
+            # The double kv usage is because the behavior
+            # changed in a Zsh version
+            local -a keys
+            local key access_string
+            keys=( "${(@kon)${(@Pk)__var_name}}" )
+            for key in "${keys[@]}"; do
+                access_string="${__var_name}[$key]"
+                print -r -- "$key: ${(P)access_string}"
+            done
+            ;;
+        (*)
+            print -r -- "${(P)__var_name}"
+            ;;
+    esac
+
+    return 0
+}
+
+# vim:ft=zsh:sw=4:sts=4:et
