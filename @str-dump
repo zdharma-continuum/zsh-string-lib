@@ -11,6 +11,22 @@
 #
 # An option -q can be provided: it'll enable quoting of the printed
 # data with the q-flag (i.e.: backslash quoting).
+#
+# Example:
+# array=( "" "a value" "test" )
+# @str-dump array
+#
+# Output:
+# ''
+# a\ value
+# test
+#
+# typeset -A hash=( "a key" "a value" key value )
+# @str-dump -q hash
+#
+# Output:
+# a\ key: a\ value
+# key: value
 
 @str-dump() {
     if [[ $1 = -q ]] {
