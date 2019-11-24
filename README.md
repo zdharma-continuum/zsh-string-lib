@@ -10,6 +10,7 @@
     - [@str-ng-matches](#str-ng-matches)
     - [@str-read-ini](#str-read-ini)
     - [@str-read-toml](#str-read-toml)
+    - [@str-dump](#str-dump)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
