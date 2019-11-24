@@ -7,10 +7,10 @@
 #
 # Dumps the contents of the variable, whether it's being a scalar,
 # an array or a hash. The contents of the hash are sorted on the
-# keys numerically, i.e.: by using `(on)` flag.
+# keys numerically, i.e.: by using `(on)` flags.
 #
 # An option -q can be provided: it'll enable quoting of the printed
-# data with the q-flag.
+# data with the q-flag (i.e.: backslash quoting).
 
 @str-dump() {
     if [[ $1 = -q ]] {
