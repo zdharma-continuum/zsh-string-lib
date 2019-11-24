@@ -96,7 +96,8 @@ Arguments:
 
 1. The buffer with JSON.
 2. The key in the JSON that should be mapped to the result (i.e.: it's possible
-   to map only a subset of the input).
+   to map only a subset of the input). It must be the first key in the object to
+   map.
 3. The name of the output hash parameter.
 
 ### @str-read-all
