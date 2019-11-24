@@ -156,6 +156,7 @@
         if [[ $__text = [[:space:]]#\{[[:space:]]#[\"\']${__key}[\"\']* ]]; then
             if (( __nest != 2 )) {
                 __found="$__text"
+                break
             }
         fi
     }
