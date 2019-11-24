@@ -228,4 +228,18 @@ array=( "${(@Q)${(@z)TOML[<sec>_array]}}" )
 command line – with the `(z)` flag, and then removes one level of quoting with
 the `(Q)` flag).
 
+### @str-dump
+
+Dumps the contents of the variable, whether it's being a scalar, an array or
+a hash. The contents of the hash are sorted on the keys numerically, i.e.: by
+using `(on)` flags.
+                                                                  
+An option `-q` can be provided: it'll enable quoting of the printed data with
+the `q`-flag (i.e.: backslash quoting).
+
+Arguments:
+
+1. The name of the variable of which contents should be dumped.
+                                                                  
+
 <!-- vim:set ft=markdown tw=80 fo+=an1 autoindent: -->
