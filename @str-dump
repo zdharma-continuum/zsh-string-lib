@@ -13,7 +13,7 @@
     local __var_name="$1"
 
     (( ${(P)+__var_name} )) || {
-        print "Error: the variable \`$__var_name' doesn't exist"
+        print "Error: the parameter \`$__var_name' doesn't exist"
         return 1
     }
     case ${(Pt)__var_name} in
