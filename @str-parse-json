@@ -87,6 +87,7 @@
             __idx+=${mbegin[1]}
             [[ -z $__quoting ]] && {
                 if [[ ${match[1]} = ["({["] ]]; then
+                    __Strings[$__level/${__Counts[$__level]}]+=" $'\0'--object--$'\0'"
                     __pos_to_level[$__idx]=$(( ++ __level ))
                     __level_to_pos[$__level]=$__idx
                     (( __Counts[$__level] += 1 ))
