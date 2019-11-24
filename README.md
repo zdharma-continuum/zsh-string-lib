@@ -238,6 +238,9 @@ using `(on)` flags.
 An option `-q` can be provided: it'll enable quoting of the printed data with
 the `q`-flag (i.e.: backslash quoting).
 
+Basically, the function Is an alternative to `declare -p`, with a different
+output format, more dump-like.
+
 Arguments:
 
 1. The name of the variable of which contents should be dumped.
