@@ -64,8 +64,8 @@ Will result in:
 
 ```zsh
 local -A Strings
-Strings[1/1]='zplugin-ices'
-Strings[2/1]='default bgn'
+Strings[1/1]="zplugin-ices"
+Strings[2/1]="default $'\0'--object--$'\0' bgn $'\0'--object--$'\0'"
 Strings[3/1]='wait 1 lucid \  as program pick fzy make \ '
 Strings[3/2]='wait 1 lucid \  as null make \  sbin fzy\;contrib/fzy-\*'
 ```
@@ -84,11 +84,13 @@ integer pos
 pos=${${(@Q)${(@z)Strings[2/1]}}[(I)bgn]}
 if (( pos )) {
   local -A ices
-  ices=( "${(@Q)${(@z)Strings[3/$pos]}}" )
+  ices=( "${(@Q)${(@z)Strings[3/$(( (pos+1) / 2 ))]}}" )
   # Use the `ices' hash holding the values of the `bgn' object
   …
 }
 ```
+
+Note that the `$'\0'` is correctly dequoted by `Q` flag into the null byte.
 
 Arguments:
 
