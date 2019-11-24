@@ -234,13 +234,39 @@ the `(Q)` flag).
 Dumps the contents of the variable, whether it's being a scalar, an array or
 a hash. The contents of the hash are sorted on the keys numerically, i.e.: by
 using `(on)` flags.
-                                                                  
+
 An option `-q` can be provided: it'll enable quoting of the printed data with
 the `q`-flag (i.e.: backslash quoting).
 
 Arguments:
 
 1. The name of the variable of which contents should be dumped.
-                                                                  
+
+Example:
+
+```zsh
+array=( "" "a value" "test" )
+@str-dump -q array
+```
+
+Output:
+
+```
+''
+a\ value
+test
+```
+
+```zsh
+typeset -A hash=( "a key" "a value" key value )
+@str-dump -q hash
+```
+
+Output:
+
+```
+a\ key: a\ value
+key: value
+````
 
 <!-- vim:set ft=markdown tw=80 fo+=an1 autoindent: -->
