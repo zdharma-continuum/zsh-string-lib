@@ -24,7 +24,7 @@
     }
     exec {FD}< <(command cat test_input.txt)
 
-    evl @str-read-all $FD \; reply=\( "\${(@f)REPLY}" \)
+    evl @str-read-all $FD \; ret="\$?" \; reply=\( "\${(@f)REPLY}" \) \; return \$ret
 
     assert "$state" same_as "0"
     assert "$output" same_as ""
